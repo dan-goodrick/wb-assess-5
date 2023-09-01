@@ -15,7 +15,7 @@ export class Human extends Model {
 }
 
 Human.init({
-  human_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
+  humanId: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
   fname: { type: DataTypes.INTEGER, allowNull: false },
   fname: { type: DataTypes.STRING, allowNull: false },
   lname: { type: DataTypes.STRING, allowNull: false },
@@ -32,20 +32,21 @@ export class Animal extends Model {
 }
 
 Animal.init({
-  animal_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
+  animalId: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
   name: { type: DataTypes.INTEGER, allowNull: false },
   species: { type: DataTypes.STRING, allowNull: false },
-  birth_year: DataTypes.INTEGER,
+  birthYear: DataTypes.INTEGER,
 },
 {
   sequelize: db,
 });
 
-Human.hasMany(Animal, { foreignKey: "human_id" });
-Animal.belongsTo(Human, { foreignKey: "human_id" });
+Human.hasMany(Animal, { foreignKey: "humanId" });
+Animal.belongsTo(Human, { foreignKey: "humanId" });
 
 
 console.log(await Human.findByPk(1).then((h)=> h.getFullName()));
 
+// await db.sync({ force: true });
 // await db.close()
 export default db;
