@@ -12,10 +12,13 @@ select sum(num_cupcakes) from orders where not processed;
 select cupcakes.name, sum(orders.num_cupcakes) from cupcakes full outer join orders on cupcakes.id = orders.cupcake_id group by cupcakes.name order by cupcakes.name;
 
 -- problem 5
+select (select customers.email from customers where customers.id = customer_id), sum(num_cupcakes) from orders group by customer_id order by sum desc;
+
 -- problem 6
+select c.fname, c.lname, c.email from orders join customers c on c.id=orders.customer_id join cupcakes cp on cp.id=orders.cupcake_id where cp.name='funfetti' and orders.processed group by c.id;
 
+-- Part 2
 
--- group by for probs 4, 5
 
 
 -- Prob 2 does not have autoincrement in the table
